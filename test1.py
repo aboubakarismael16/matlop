@@ -73,7 +73,7 @@ ax.tricontour(tri_refi, z_test_refi, levels=levels, cmap=cmap,
 # Plots direction of the electrical vector field
 ax.quiver(triang.x, triang.y / 2, (Ex / E_norm) / 2, (Ey / E_norm) / 2,
           units='xy', scale=10., zorder=7, color='blue',
-          width=0.005, headwidth=2., headlength=4.)
+          width=0.005 , headwidth=2., headlength=4.)
 
 ax.set_title("flow field diagram of equal output with one source and one sink")
 plt.show()
