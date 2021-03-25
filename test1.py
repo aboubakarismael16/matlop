@@ -6,10 +6,10 @@ import numpy as np
 
 
 # -----------------------------------------------------------------------------
-# Electrical potential of a dipole
+# 等势线函数
 # -----------------------------------------------------------------------------
-def dipole_potential(x, y):
-    """The electric dipole potential V, at position *x*, *y*."""
+def deng_shi_xian(x, y):
+    """等势线函数 V, 在  *x*, *y*. 位置"""
     r_sq = x ** 2 + y ** 2
     theta = np.arctan2(y, x)
     z = np.cos(theta) / r_sq
@@ -31,7 +31,7 @@ angles[:, 1::2] += np.pi / n_angles
 
 x = (radii * np.cos(angles)).flatten()
 y = (radii * np.sin(angles)).flatten()
-V = dipole_potential(x, y)
+V = deng_shi_xian(x, y)
 
 # Create the Triangulation; no triangles specified so Delaunay triangulation
 # created.
@@ -41,16 +41,15 @@ triang = Triangulation(x, y)
 triang.set_mask(np.hypot(x[triang.triangles].mean(axis=1), y[triang.triangles].mean(axis=1)) == min_radius)
 
 # -----------------------------------------------------------------------------
-# Refine data - interpolates the electrical potential V
+# Refine data - interpolates  V
 # -----------------------------------------------------------------------------
 refiner = UniformTriRefiner(triang)
 tri_refi, z_test_refi = refiner.refine_field(V, subdiv=3)
 
 # -----------------------------------------------------------------------------
-# Computes the electrical field (Ex, Ey) as gradient of electrical potential
+# Computes field (Ex, Ey) as
 # -----------------------------------------------------------------------------
 tci = CubicTriInterpolator(triang, -V)
-# Gradient requested here at the mesh nodes but could be anywhere else:
 (Ex, Ey) = tci.gradient(triang.x, triang.y)
 E_norm = np.sqrt(Ex ** 2 + Ey ** 2)
 
@@ -70,7 +69,7 @@ cmap = cm.get_cmap(name='hot', lut=None)
 ax.tricontour(tri_refi, z_test_refi, levels=levels, cmap=cmap,
               linewidths=[2.0, 1.0, 1.0, 1.0])
 
-# Plots direction of the electrical vector field
+# 等流线方向
 ax.quiver(triang.x, triang.y / 2, (Ex / E_norm) / 2, (Ey / E_norm) / 2,
           units='xy', scale=10., zorder=7, color='blue',
           width=0.005 , headwidth=2., headlength=4.)
