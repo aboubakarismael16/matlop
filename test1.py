@@ -41,7 +41,7 @@ triang = Triangulation(x, y)
 triang.set_mask(np.hypot(x[triang.triangles].mean(axis=1), y[triang.triangles].mean(axis=1)) == min_radius)
 
 # -----------------------------------------------------------------------------
-# Refine data - interpolates the electrical potential V
+# Refine data - interpolates  V
 # -----------------------------------------------------------------------------
 refiner = UniformTriRefiner(triang)
 tri_refi, z_test_refi = refiner.refine_field(V, subdiv=3)
