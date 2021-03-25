@@ -9,10 +9,10 @@ t.pensize(3)
 t = turtle.Turtle()      #instantiate a new turtle object called 'a'
 t.hideturtle()           #make the turtle invisible
 t.penup()                #don't draw when turtle moves
-t.goto(0, 80)       #move the turtle to a location
+t.goto(0, 20)            #move the turtle to a location
 t.showturtle()           #make the turtle visible
 t.pendown()              #draw when the turtle moves
-t.goto(0, 80)
+t.goto(0, 20)
 
 for i in range(5):
     t.circle(20 * i)
@@ -20,19 +20,19 @@ for i in range(5):
 t = turtle.Turtle()      #instantiate a new turtle object called 'a'
 t.hideturtle()           #make the turtle invisible
 t.penup()                #don't draw when turtle moves
-t.goto(0, -20)       #move the turtle to a location
+t.goto(0, 0)           #move the turtle to a location
 t.showturtle()           #make the turtle visible
 t.pendown()              #draw when the turtle moves
-t.goto(0, -20)           #move the turtle to a new location
+t.goto(0, 0)           #move the turtle to a new location
 
 for i in range(5):
     t.circle(-20*i)
 
-for i in range(5):
-  t.circle(30*i)
-  t.up()
-  t.sety((10*i)*(-3))
-  t.down()
+for i in range(10):
+    t.circle(10*i)
+    t.up()
+    t.sety((10*i)*(-1))
+    t.down()
 
 
 angle = np.linspace(0, 2 * np.pi, 150)
